@@ -1,0 +1,31 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Triggers deployment on pushing to 'main' branch
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest  # Runs on the latest Ubuntu image
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3  # Checks out your repository
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3  # Sets up Node.js environment
+      with:
+        node-version: 'lts'  # Specify the Node.js version you want to use
+
+    - name: Install dependencies
+      run: npm install  # Installs your project's dependencies
+
+    - name: Build project
+      run: npm run build  # Builds the project using Vite
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3  # Deploys the build to GitHub Pages
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}  # Uses the GITHUB_TOKEN secret to authenticate
+        publish_dir: ./dist  # Specifies the directory to deploy (output of 'npm run build')
