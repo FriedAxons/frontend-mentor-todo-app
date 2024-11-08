@@ -16,13 +16,17 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v3  # Sets up Node.js environment
       with:
-        node-version: '22'  # Use the latest LTS version (major version)
+        node-version: '16'  # Set this to the correct Node.js version (latest LTS)
 
     - name: Install dependencies
-      run: npm install  # Installs your project's dependencies
+      run: |
+        npm install  # Installs your project's dependencies
+        npm ls  # This will list all installed dependencies to verify they were installed
 
     - name: Build project
-      run: npm run build  # Builds the project using Vite
+      run: |
+        npm run build  # Builds the project using Vite
+        ls -al dist  # Check if the 'dist' folder is created
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3  # Deploys the build to GitHub Pages
