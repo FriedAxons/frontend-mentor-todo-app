@@ -1,6 +1,9 @@
-/* Global styles */
-@use '._/variables';
+@use './variables' as *;
 
+/* Global styles */
+body {
+  background-color: black;
+}
 
 // body {
   
