@@ -1,21 +1,26 @@
-import React, { useState } from "react";
-import Header from "./components/Header";
-import "./styles/App.scss";
+import { useEffect, useState } from "react";
+import Header from "./components/Header"; // Adjust the path as necessary
 
-const App: React.FC = () => {
-  // Create the darkMode state
-  const [darkMode, setDarkMode] = useState(false);
+function App() {
+  const [theme, setTheme] = useState<"light" | "dark">(() => {
+    return (localStorage.getItem("theme") as "light" | "dark") || "light";
+  });
 
-  // Define the toggleDarkMode function to switch between modes
-  const toggleDarkMode = () => {
-    setDarkMode((prevMode) => !prevMode);
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
   };
 
+  useEffect(() => {
+    document.body.className = theme; // Update body class directly
+    localStorage.setItem("theme", theme); // Persist the theme in localStorage
+  }, [theme]);
+
   return (
-    <div className={darkMode ? "dark" : "light"}>
-      <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-    </div>
+    <>
+      <Header darkMode={theme === "dark"} toggleDarkMode={toggleTheme} />
+      {/* Other app content goes here */}
+    </>
   );
-};
+}
 
 export default App;
