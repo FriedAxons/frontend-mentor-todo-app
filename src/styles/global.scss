@@ -1,5 +1,4 @@
 /* Global styles */
-
 * {
   margin: 0;
   padding: 0;
@@ -7,10 +6,31 @@
 }
 
 body {
+  display: flex;
   font-family: $font;
+  color: white;
+  min-height: 100vh;
+}
+
+body.light {
+  background-color: $v-light-gray;
+  background-image: $bg-desktop-light;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+body.dark {
   background-color: $v-dark-blue;
   background-image: $bg-desktop-dark;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
 }
 
+#root {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  // min-height: 100vh;
+}
