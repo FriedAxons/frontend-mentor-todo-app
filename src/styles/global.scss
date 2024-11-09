@@ -1,11 +1,16 @@
-@use './variables' as *;
-
 /* Global styles */
-body {
-  background-color: black;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; // Ensures elements' sizes include padding and border
 }
 
-// body {
-  
-// }
+body {
+  font-family: $font;
+  background-color: $v-dark-blue;
+  background-image: $bg-desktop-dark;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 

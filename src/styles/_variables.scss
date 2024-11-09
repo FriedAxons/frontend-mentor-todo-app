@@ -1,3 +1,4 @@
+// Colors
 $primary-blue: hsl(220, 98%, 61%);
 
 /* Light Theme */
@@ -15,3 +16,16 @@ $dt-l-gray-blue-hover: hsl(236, 33%, 92%);
 $dt-dark-gray-blue: hsl(234, 11%, 52%);
 $dt-v-dark-gray-blue: hsl(233, 14%, 35%);
 $dt-v-dark-gray-blue-two: hsl(237, 14%, 26%);
+
+// Links
+$bg-desktop-dark: url("public/images/bg-desktop-dark.jpg");
+$bg-desktop-light: url("public/images/bg-desktop-light.jpg");
+$bg-mobile-dark: url("public/images/bg-mobile-dark.jpg");
+$bg-mobile-light: url("public/images/bg-mobile-light.jpg");
+$icon-check: url("public/images/icon-check-svg.svg");
+$icon-cross: url("public/images/icon-cross-svg.svg");
+$icon-moon: url("public/images/icon-moon-svg.svg");
+$icon-sun: url("public/images/icon-sun-svg.svg");
+
+// Fonts
+$font: "Josefin Sans", sans-serif;
