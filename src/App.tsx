@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Header from "./components/Header"; // Adjust the path as necessary
+import TodoList from "./components/TodoList";
 
 function App() {
   const [theme, setTheme] = useState<"light" | "dark">(() => {
@@ -16,10 +17,10 @@ function App() {
   }, [theme]);
 
   return (
-    <>
+    <div className="App">
       <Header darkMode={theme === "dark"} toggleDarkMode={toggleTheme} />
-      {/* Other app content goes here */}
-    </>
+      <TodoList darkMode={theme === "dark"} />
+    </div>
   );
 }
 

@@ -1,0 +1,11 @@
+.todoList {
+  border-radius: 5px;
+}
+
+.todoList.light {
+  background-color: $v-light-gray;
+}
+
+.todoList.dark {
+  background-color: $v-dark-desat-blue;
+}
