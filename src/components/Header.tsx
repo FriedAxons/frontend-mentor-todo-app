@@ -8,12 +8,12 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ darkMode, toggleDarkMode }) => {
   return (
     <header className={styles.header}>
-      <h1 className={styles.title}>Todo</h1>
+      <h1 className={styles.h1}>TODO</h1>
       <img
-        src={darkMode ? "/images/icon-moon.svg" : "/images/icon-sun.svg"} // Dynamic image source based on darkMode "
+        src={darkMode ? "images/icon-moon.svg" : "images/icon-sun.svg"} // Dynamic image source based on darkMode "
         alt={darkMode ? "Moon icon" : "Sun icon"}
-        className={styles.icon}
-        onClick={toggleDarkMode} // Toggle the theme when clicked
+        className={styles.img}
+        onClick={toggleDarkMode} // Calls toggleTheme in App on click
       />
     </header>
   );
