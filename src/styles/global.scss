@@ -7,17 +7,16 @@
 
 body {
   display: flex;
-  font-family: $font;
   color: white;
   min-height: 100vh;
-
+  
   &.light {
     background-color: $v-light-gray;
     background-image: $bg-desktop-light;
     background-repeat: no-repeat;
     background-size: contain;
   }
-
+  
   &.dark {
     background-color: $v-dark-blue;
     background-image: $bg-desktop-dark;
@@ -37,4 +36,5 @@ body {
 .App {
   width: 40%;
   height: 80%;
+  font-family: $font;
 }
