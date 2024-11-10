@@ -30,7 +30,7 @@ const CreateTodo: React.FC<CreateTodoProps> = ({ darkMode, onAddTodo }) => {
         onChange={(e) => setInput(e.target.value)}
         onKeyDown={handleKeyDown}
         placeholder="Create a new todo..."
-        className={styles.input} // Correct className usage
+        className={styles.input}
       />
     </div>
   );

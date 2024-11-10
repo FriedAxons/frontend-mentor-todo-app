@@ -30,3 +30,19 @@ $icon-sun: url("images/icon-sun.svg");
 
 // Fonts
 $font: "Josefin Sans", sans-serif;
+
+
+/* 
+Map the SCSS variables to CSS variables.
+All of these or none of these may be end up being used in components. It was done for the sake of practice and examples for reference in the future.
+*/
+:root {
+  --icon-check: #{$icon-check};
+  --icon-cross: #{$icon-cross};
+  --icon-moon: #{$icon-moon};
+  --icon-sun: #{$icon-sun};
+  --bg-desktop-dark: #{$bg-desktop-dark};
+  --bg-desktop-light: #{$bg-desktop-light};
+  --bg-mobile-dark: #{$bg-mobile-dark};
+  --bg-mobile-light: #{$bg-mobile-light};
+}
