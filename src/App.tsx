@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Header from "./components/Header"; // Adjust the path as necessary
 import CreateTodo from "./components/CreateTodo";
-// import TodoList from "./components/TodoList";
+import TodoList from "./components/TodoList";
 
 function App() {
   const [theme, setTheme] = useState<"light" | "dark">(() => {

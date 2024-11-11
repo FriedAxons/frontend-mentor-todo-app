@@ -1,11 +1,98 @@
 .todoList {
   border-radius: 5px;
+  padding: 15px;
+  margin-top: 20px;
+
+  /* Dark mode */
+  &.dark {
+    background-color: $v-dark-desat-blue;
+
+    .todoItem {
+      border-bottom: 1px solid $dt-v-dark-gray-blue-two;
+      color: white;
+    }
+
+    .footer {
+      border-top: 1px solid $dt-v-dark-gray-blue-two;
+      color: white;
+    }
+  }
+
+  /* Light mode */
+  &.light {
+    background-color: white;
+
+    .todoItem {
+      &:nth-child(2n) {
+        border-bottom: 1px solid $v-light-gray-blue;
+      }
+    }
+
+    .footer {
+      border-top: none;
+      color: $v-dark-grayish-blue;
+    }
+  }
 }
 
-.todoList.light {
-  background-color: $v-light-gray;
+/* Individual todo item styling */
+.todoItem {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+
+  .radioButton {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid $v-light-gray;
+    margin-right: 15px;
+    cursor: pointer;
+    
+    &.completed {
+      background-color: $bright-blue;
+      border-color: $bright-blue;
+    }
+  }
+
+  .todoText {
+    flex-grow: 1;
+  }
 }
 
-.todoList.dark {
-  background-color: $v-dark-blue;
+/* Footer section for filtering and clear options */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  font-size: 14px;
+
+  .itemsLeft {
+    font-weight: bold;
+  }
+
+  .filters {
+    display: flex;
+    gap: 10px;
+
+    button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: inherit;
+      font-weight: bold;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .clearCompleted {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: $bright-blue;
+  }
 }

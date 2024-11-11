@@ -27,10 +27,11 @@
     background-color: #fff;
 
     input {
-      // background-color: #;
       border: none;
       color: $l-gray-blue;
+      opacity: .6;
       font-family: inherit;
+      font-weight: 600;
     }
 
     .circle {
