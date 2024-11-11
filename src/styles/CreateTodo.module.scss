@@ -4,7 +4,7 @@
   align-items: center;
   padding: 10px;
   border-radius: 5px;
-  transition: background-color 0.3s, border-color 0.3s; /* Smooth transition for background and border */
+  // width: 100%;
 
   /* Dark mode and light mode styles are nested */
   &.dark {
@@ -18,14 +18,14 @@
     }
 
     .circle {
-      border-color: $dt-v-dark-gray-blue-two;
+      border: 2px solid $dt-v-dark-gray-blue-two;
       opacity: 1;
     }
   }
 
   &.light {
     background-color: #fff;
-    color: $v-light-gray;
+    // color: $v-light-gray;
 
     input {
       background-color: #f5f5f5;
@@ -48,9 +48,11 @@
   }
 
   span.circle {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
-    margin: 0 10px 0 10px;
+    margin: 0 10px 2px 15px;
+    opacity: 1;
+  
   }
 }
