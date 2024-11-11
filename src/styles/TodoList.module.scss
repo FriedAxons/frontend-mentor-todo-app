@@ -30,7 +30,7 @@
 
     .footer {
       border-top: none;
-      color: $v-dark-grayish-blue;
+      color: $v-dark-gray-blue;
     }
   }
 }
@@ -49,10 +49,8 @@
     margin-right: 15px;
     cursor: pointer;
     
-    &.completed {
-      background-color: $bright-blue;
-      border-color: $bright-blue;
-    }
+    // &.completed {
+    // }
   }
 
   .todoText {
@@ -93,6 +91,5 @@
     background: none;
     border: none;
     cursor: pointer;
-    color: $bright-blue;
   }
 }

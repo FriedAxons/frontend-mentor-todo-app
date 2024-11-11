@@ -28,13 +28,16 @@ const TodoList: React.FC<TodoListProps> = ({
       className={`${styles.todoList} ${darkMode ? styles.dark : styles.light}`}
     >
       <ul>
-        {todos.map((todo, index) => (
-          <li key={todo.id} className={styles.todoItem}>
+        {todos.map((todo) => (
+          <li
+            key={todo.id}
+            className={styles.todoItem}
+            onClick={() => toggleTodo(todo.id)}
+          >
             <span
               className={`${styles.radioButton} ${
                 todo.completed ? styles.completed : ""
               }`}
-              onClick={() => toggleTodo(todo.id)}
             ></span>
             <span className={styles.todoText}>{todo.text}</span>
           </li>
@@ -44,9 +47,9 @@ const TodoList: React.FC<TodoListProps> = ({
       <div className={styles.footer}>
         <span className={styles.itemsLeft}>{itemsLeft} items left</span>
         <div className={styles.filters}>
-          <button onClick={() => filterTodos("all")}>All</button>
-          <button onClick={() => filterTodos("active")}>Active</button>
-          <button onClick={() => filterTodos("completed")}>Completed</button>
+          <button onClick={() => filterTodos("All")}>All</button>
+          <button onClick={() => filterTodos("Active")}>Active</button>
+          <button onClick={() => filterTodos("Completed")}>Completed</button>
         </div>
         <button className={styles.clearCompleted} onClick={clearCompleted}>
           Clear Completed
