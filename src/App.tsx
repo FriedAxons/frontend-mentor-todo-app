@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Header from "./components/Header"; // Adjust the path as necessary
 import CreateTodo from "./components/CreateTodo";
-import TodoList from "./components/TodoList";
+import TodoList, { Todo } from "./components/TodoList";
 
 function App() {
   const [theme, setTheme] = useState<"light" | "dark">(() => {
@@ -9,9 +9,15 @@ function App() {
   });
 
   // Manage list of todos
-  const [todos, setTodos] = useState<
-    { id: number; text: string; completed: boolean }[]
-  >([]);
+  const [todos, setTodos] = useState<Todo[]>(() => {
+    try {
+      const storedTodos = localStorage.getItem("todos");
+      return storedTodos ? JSON.parse(storedTodos) : [];
+    } catch (error) {
+      console.error("Failed to parse todos from localStorage", error);
+      return [];
+    }
+  });
 
   const toggleTheme = () => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
@@ -21,6 +27,10 @@ function App() {
     document.body.className = theme; // Update body class directly
     localStorage.setItem("theme", theme); // Persist the theme in localStorage
   }, [theme]);
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   // Function to add a new todo
   const addTodo = (text: string) => {

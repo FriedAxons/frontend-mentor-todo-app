@@ -1,6 +1,6 @@
 import styles from "../styles/TodoList.module.scss";
 
-interface Todo {
+export interface Todo {
   id: number;
   text: string;
   completed: boolean;

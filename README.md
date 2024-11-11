@@ -32,6 +32,7 @@ Users should be able to:
 - Clear all completed todos
 - Toggle light and dark mode
 - **Bonus**: Drag and drop to reorder items on the list
+- **Made up bonus**: This is not from the project itself, but for the extra challenge try adding something like local storage so the data persists for the user
 
 ### Screenshot
 
