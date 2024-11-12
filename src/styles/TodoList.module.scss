@@ -1,7 +1,7 @@
 .todoList {
   border-radius: 5px;
-  padding: 15px;
-  margin-top: 20px;
+  padding: 0 0 0;
+  margin-top: 15px;
 
   /* Dark mode */
   &.dark {
@@ -39,22 +39,22 @@
 .todoItem {
   display: flex;
   align-items: center;
-  padding: 10px 0;
+  padding: 15.91px 0;
+  cursor: pointer;
 
   .radioButton {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
-    border: 2px solid $v-light-gray;
-    margin-right: 15px;
+    border: 2px solid $dt-v-dark-gray-blue-two;
+    margin: 0 10px 2px 30px;
     cursor: pointer;
-    
-    // &.completed {
-    // }
   }
 
   .todoText {
+    padding: 10px 0 10px 15px;
     flex-grow: 1;
+    color: $dt-l-gray-blue;
   }
 }
 
@@ -63,23 +63,24 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0;
+  padding: 16.37px 0;
   font-size: 14px;
-
-  .itemsLeft {
-    font-weight: bold;
+  color: $dt-v-dark-gray-blue-two;
+  opacity: .6;
+  
+  span, .filters, .clearCompleted {
+    padding: 10px 0px 10px 30px;
   }
 
   .filters {
     display: flex;
-    gap: 10px;
+    gap: 20px;
 
     button {
       background: none;
       border: none;
       cursor: pointer;
       color: inherit;
-      font-weight: bold;
 
       &:hover {
         text-decoration: underline;
@@ -90,6 +91,8 @@
   .clearCompleted {
     background: none;
     border: none;
+    color: inherit;
+    padding-right: 30px;
     cursor: pointer;
   }
 }
