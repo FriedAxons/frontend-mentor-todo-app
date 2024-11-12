@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styles from "../styles/TodoList.module.scss";
 
 export interface Todo {
@@ -21,7 +22,15 @@ const TodoList: React.FC<TodoListProps> = ({
   filterTodos,
   darkMode,
 }) => {
+  const [activeFilter, setActiveFilter] = useState<
+    "All" | "Active" | "Completed"
+  >("All");
   const itemsLeft = todos.filter((todo) => !todo.completed).length;
+
+  const handleFilterClick = (status: "All" | "Active" | "Completed") => {
+    setActiveFilter(status);
+    filterTodos(status);
+  };
 
   return (
     <div
@@ -47,9 +56,24 @@ const TodoList: React.FC<TodoListProps> = ({
       <div className={styles.footer}>
         <span className={styles.itemsLeft}>{itemsLeft} items left</span>
         <div className={styles.filters}>
-          <button onClick={() => filterTodos("All")}>All</button>
-          <button onClick={() => filterTodos("Active")}>Active</button>
-          <button onClick={() => filterTodos("Completed")}>Completed</button>
+          <button
+            onClick={() => handleFilterClick("All")}
+            className={activeFilter === "All" ? styles.active : ""}
+          >
+            All
+          </button>
+          <button
+            onClick={() => handleFilterClick("Active")}
+            className={activeFilter === "Active" ? styles.active : ""}
+          >
+            Active
+          </button>
+          <button
+            onClick={() => handleFilterClick("Completed")}
+            className={activeFilter === "Completed" ? styles.active : ""}
+          >
+            Completed
+          </button>
         </div>
         <button className={styles.clearCompleted} onClick={clearCompleted}>
           Clear Completed

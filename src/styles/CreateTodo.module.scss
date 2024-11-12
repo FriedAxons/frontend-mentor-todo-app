@@ -13,7 +13,8 @@
       background-color: $v-dark-desat-blue;
       border: none;
       font-family: inherit;
-      opacity: .6;
+      color: $dt-l-gray-blue;
+      opacity: 1;
     }
 
     .circle {
@@ -44,6 +45,7 @@
     font-size: 18px;
     border-radius: 5px;
     outline: none;
+    opacity: .6;
   }
 
   span.circle {

@@ -9,18 +9,16 @@
 
     .todoItem {
       border-bottom: 1px solid $dt-v-dark-gray-blue-two;
-      color: white;
     }
 
     .footer {
       border-top: 1px solid $dt-v-dark-gray-blue-two;
-      color: white;
     }
   }
 
   /* Light mode */
   &.light {
-    background-color: white;
+    background-color: $v-light-gray;
 
     .todoItem {
       &:nth-child(2n) {
@@ -40,8 +38,7 @@
   display: flex;
   align-items: center;
   padding: 15.91px 0;
-  cursor: pointer;
-
+  
   .radioButton {
     width: 24px;
     height: 24px;
@@ -55,6 +52,7 @@
     padding: 10px 0 10px 15px;
     flex-grow: 1;
     color: $dt-l-gray-blue;
+    cursor: pointer;
   }
 }
 
@@ -63,27 +61,40 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16.37px 0;
+  padding: 12px 0 10px;
   font-size: 14px;
-  color: $dt-v-dark-gray-blue-two;
-  opacity: .6;
-  
-  span, .filters, .clearCompleted {
+
+  span,
+  .clearCompleted {
     padding: 10px 0px 10px 30px;
+    opacity: .2;
   }
 
   .filters {
     display: flex;
     gap: 20px;
+    padding: 10px 0 10px;
 
     button {
       background: none;
       border: none;
       cursor: pointer;
       color: inherit;
+      opacity: .2;
 
       &:hover {
-        text-decoration: underline;
+        color: $dt-l-gray-blue-hover;
+        opacity: 1;
+      }
+
+      &:active {
+        color: $primary-blue;
+        opacity: 1;
+      }
+
+      &:focus {
+        color: $primary-blue;
+        opacity: 1;
       }
     }
   }
@@ -94,5 +105,15 @@
     color: inherit;
     padding-right: 30px;
     cursor: pointer;
+
+    &:hover {
+      color: $dt-l-gray-blue-hover;
+      opacity: 1;
+    }
+    
+    &:active {
+      color: $primary-blue;
+      opacity: 1;
+    }
   }
 }
