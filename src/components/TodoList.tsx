@@ -48,7 +48,13 @@ const TodoList: React.FC<TodoListProps> = ({
                 todo.completed ? styles.completed : ""
               }`}
             ></span>
-            <span className={styles.todoText}>{todo.text}</span>
+            <span
+              className={`${styles.todoText} ${
+                todo.completed ? styles.completed : ""
+              }`}
+            >
+              {todo.text}
+            </span>
           </li>
         ))}
       </ul>

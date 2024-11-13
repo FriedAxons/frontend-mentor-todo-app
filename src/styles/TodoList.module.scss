@@ -124,7 +124,13 @@
     padding: 10px 0 10px 15px;
     flex-grow: 1;
     color: $dt-l-gray-blue;
+    font-size: 18px;
     cursor: pointer;
+
+    &.completed {
+      text-decoration: line-through;
+      opacity: .2;
+    }
   }
 }
 
