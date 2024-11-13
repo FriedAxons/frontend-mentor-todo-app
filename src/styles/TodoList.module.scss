@@ -49,10 +49,9 @@
     cursor: pointer;
     border: 2px solid $dt-v-dark-gray-blue-two;
     margin: 0 10px 2px 30px;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
     position: relative;
 
-    &:hover::after {
+    &:not(.completed):hover::after {
       /*
       Using ::after to Create a Border:
 
