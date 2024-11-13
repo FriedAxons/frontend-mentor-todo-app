@@ -12,6 +12,7 @@ interface TodoListProps {
   toggleTodo: (id: number) => void;
   clearCompleted: () => void;
   filterTodos: (status: "All" | "Active" | "Completed") => void;
+  deleteTodo: (id: number) => void;
   darkMode: boolean;
 }
 
@@ -20,6 +21,7 @@ const TodoList: React.FC<TodoListProps> = ({
   toggleTodo,
   clearCompleted,
   filterTodos,
+  deleteTodo,
   darkMode,
 }) => {
   const [activeFilter, setActiveFilter] = useState<
@@ -38,23 +40,28 @@ const TodoList: React.FC<TodoListProps> = ({
     >
       <ul>
         {todos.map((todo) => (
-          <li
-            key={todo.id}
-            className={styles.todoItem}
-            onClick={() => toggleTodo(todo.id)}
-          >
+          <li key={todo.id} className={styles.todoItem}>
             <span
               className={`${styles.radioButton} ${
                 todo.completed ? styles.completed : ""
               }`}
+              onClick={() => toggleTodo(todo.id)}
             ></span>
             <span
               className={`${styles.todoText} ${
                 todo.completed ? styles.completed : ""
               }`}
+              onClick={() => toggleTodo(todo.id)}
             >
               {todo.text}
             </span>
+            <span
+              className={styles.deleteIcon}
+              onClick={(e) => {
+                e.stopPropagation(); // Prevent toggling completion when deleting
+                deleteTodo(todo.id);
+              }}
+            ></span>
           </li>
         ))}
       </ul>

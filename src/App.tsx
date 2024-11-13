@@ -83,6 +83,10 @@ function App() {
     }
   };
 
+  const deleteTodo = (id: number) => {
+    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
+  };
+
   const handleFilterChange = (status: "All" | "Active" | "Completed") => {
     setActiveFilter(status);
     updateFilteredTodos(status);
@@ -98,6 +102,7 @@ function App() {
           toggleTodo={toggleTodo}
           clearCompleted={clearCompleted}
           filterTodos={handleFilterChange} // Change the filter through this handler
+          deleteTodo={deleteTodo}
           darkMode={theme === "dark"}
         />
       )}
