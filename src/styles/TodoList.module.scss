@@ -21,14 +21,72 @@
     background-color: $v-light-gray;
 
     .todoItem {
-      &:nth-child(2n) {
+      &:first-child {
+        border-bottom: 1px solid $v-light-gray-blue;
+      }
+
+      &:nth-child(n + 3):nth-child(2n + 1) {
         border-bottom: 1px solid $v-light-gray-blue;
       }
     }
 
+    .radioButton {
+      border: none;
+    }
+
+    .todoText {
+      color: $v-dark-gray-blue;
+      font-weight: 600;
+    }
+
     .footer {
       border-top: none;
-      color: $v-dark-gray-blue;
+      font-weight: 500;
+
+      span {
+        color: $d-gray-blue;
+        opacity: .8;
+      }
+
+      button {
+        color: $d-gray-blue;
+        opacity: .8;
+
+        &:hover {
+          color: $v-dark-desat-blue;
+          opacity: 1;
+          font-weight: 600;
+        }
+      }
+
+
+      // &:active {
+      //   color: $primary-blue;
+      //   opacity: 1;
+      // }
+
+      // &:focus {
+      //   color: $primary-blue;
+      //   opacity: 1;
+      // }
+
+      // .clearCompleted {
+      //   background: none;
+      //   border: none;
+      //   color: inherit;
+      //   padding-right: 30px;
+      //   cursor: pointer;
+
+      //   &:hover {
+      //     color: $dt-l-gray-blue-hover;
+      //     opacity: 1;
+      //   }
+
+      //   &:active {
+      //     color: $primary-blue;
+      //     opacity: 1;
+      //   }
+      // }
     }
   }
 }
@@ -129,7 +187,7 @@
 
     &.completed {
       text-decoration: line-through;
-      opacity: .2;
+      opacity: 0.2;
     }
   }
 }
@@ -140,7 +198,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 12px 0 10px;
-  font-size: 14px;
+  font-size: 15px;
 
   span,
   .clearCompleted {
