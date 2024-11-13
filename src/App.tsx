@@ -8,7 +8,6 @@ function App() {
     return (localStorage.getItem("theme") as "light" | "dark") || "light";
   });
 
-  // Manage list of todos
   const [todos, setTodos] = useState<Todo[]>(() => {
     try {
       const storedTodos = localStorage.getItem("todos");
@@ -19,20 +18,38 @@ function App() {
     }
   });
 
+  const [activeFilter, setActiveFilter] = useState<
+    "All" | "Active" | "Completed"
+  >("All");
+  const [filteredTodos, setFilteredTodos] = useState<Todo[]>(todos);
+
   const toggleTheme = () => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
   };
 
   useEffect(() => {
-    document.body.className = theme; // Update body class directly
-    localStorage.setItem("theme", theme); // Persist the theme in localStorage
+    document.body.className = theme;
+    localStorage.setItem("theme", theme);
   }, [theme]);
 
   useEffect(() => {
+    // Update localStorage with todos
     localStorage.setItem("todos", JSON.stringify(todos));
-  }, [todos]);
 
-  // Function to add a new todo
+    // Update filteredTodos based on activeFilter
+    switch (activeFilter) {
+      case "Active":
+        setFilteredTodos(todos.filter((todo) => !todo.completed));
+        break;
+      case "Completed":
+        setFilteredTodos(todos.filter((todo) => todo.completed));
+        break;
+      default:
+        setFilteredTodos(todos);
+        break;
+    }
+  }, [todos, activeFilter]); // Dependencies include todos and activeFilter
+
   const addTodo = (text: string) => {
     if (text.trim()) {
       const newTodo = { id: Date.now(), text, completed: false };
@@ -52,15 +69,23 @@ function App() {
     setTodos((prevTodos) => prevTodos.filter((todo) => !todo.completed));
   };
 
-  const filterTodos = (status: "All" | "Active" | "Completed") => {
+  const updateFilteredTodos = (status: "All" | "Active" | "Completed") => {
     switch (status) {
       case "Active":
-        return todos.filter((todo) => !todo.completed);
+        setFilteredTodos(todos.filter((todo) => !todo.completed));
+        break;
       case "Completed":
-        return todos.filter((todo) => todo.completed);
+        setFilteredTodos(todos.filter((todo) => todo.completed));
+        break;
       default:
-        return todos;
+        setFilteredTodos(todos);
+        break;
     }
+  };
+
+  const handleFilterChange = (status: "All" | "Active" | "Completed") => {
+    setActiveFilter(status);
+    updateFilteredTodos(status);
   };
 
   return (
@@ -69,10 +94,10 @@ function App() {
       <CreateTodo darkMode={theme === "dark"} onAddTodo={addTodo} />
       {todos.length > 0 && (
         <TodoList
-          todos={todos}
+          todos={filteredTodos} // Pass the filtered list here
           toggleTodo={toggleTodo}
           clearCompleted={clearCompleted}
-          filterTodos={filterTodos}
+          filterTodos={handleFilterChange} // Change the filter through this handler
           darkMode={theme === "dark"}
         />
       )}

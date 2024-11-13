@@ -38,14 +38,87 @@
   display: flex;
   align-items: center;
   padding: 15.91px 0;
-  
+
   .radioButton {
     width: 24px;
     height: 24px;
     border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
     border: 2px solid $dt-v-dark-gray-blue-two;
     margin: 0 10px 2px 30px;
-    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    position: relative;
+
+    &:hover::after {
+      /*
+      Using ::after to Create a Border:
+
+        Normally, if we directly apply a gradient to the border of an element, it doesn't work well with rounded corners, and the gradient can spill into the center or not appear correctly around a circle.
+
+        Instead, we use an ::after pseudo-element positioned over the button, allowing us to control exactly how the gradient appears around the circular border.
+
+      Positioning and Size with top, left, right, bottom:
+
+        By setting top, left, right, and bottom on ::after, we expand it slightly beyond the actual circle (-2px in this case), so it appears to “sit” outside the original button's border.
+        This lets us simulate the look of a gradient border without changing the actual border of the button.
+        We also set border-radius: 50% on the ::after pseudo-element to ensure it’s circular, matching the button shape.
+
+      Transparent Border on ::after and Gradient Background:
+
+        The border: 2px solid transparent on ::after is essential. It defines an outer edge but lets us still see the gradient inside. Without this, the gradient would cover the border line and might not give a clean circle outline.
+        background-image: linear-gradient(...) fills the ::after pseudo-element with the gradient colors.
+        -webkit-mask and mask-composite:
+
+        This part is a bit more complex but is the key to making the gradient border appear correctly only on the outer edge.
+        The -webkit-mask property uses a mask to control the visible parts of the ::after element.
+        linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0); creates two overlapping layers, with padding-box restricting the gradient to the border and content-box keeping the center clear.
+
+        The -webkit-mask-composite: destination-out; and mask-composite: exclude; settings make the mask "cut out" the center of the button, so only the border outline remains visible.
+      
+      Summary:
+
+        We are essentially drawing a circle in the ::after element, masking out the center, and applying a gradient border only on the outline.
+
+        This technique allows us to separate the gradient border effect from the inner button area and apply different colors or effects to the inside only when toggled (completed).
+
+      Why This Works: 
+
+        This approach creates a visual effect that traditional CSS borders and background gradients can’t achieve alone. By using ::after, masking, and precise positioning, we control the look of the gradient border and achieve a polished, custom radio button appearance.
+      */
+      content: "";
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      background-image: linear-gradient(
+        to bottom right,
+        hsl(192, 100%, 67%),
+        hsl(280, 87%, 65%)
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) padding-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: destination-out;
+      mask-composite: exclude;
+      background-origin: border-box;
+    }
+
+    &.completed {
+      background-image: linear-gradient(
+        hsl(192, 100%, 67%),
+        hsl(280, 87%, 65%)
+      );
+      border: none;
+
+      &::after {
+        content: $icon-check;
+      }
+    }
   }
 
   .todoText {
@@ -67,7 +140,7 @@
   span,
   .clearCompleted {
     padding: 10px 0px 10px 30px;
-    opacity: .2;
+    opacity: 0.2;
   }
 
   .filters {
@@ -80,7 +153,7 @@
       border: none;
       cursor: pointer;
       color: inherit;
-      opacity: .2;
+      opacity: 0.2;
 
       &:hover {
         color: $dt-l-gray-blue-hover;
@@ -110,7 +183,7 @@
       color: $dt-l-gray-blue-hover;
       opacity: 1;
     }
-    
+
     &:active {
       color: $primary-blue;
       opacity: 1;

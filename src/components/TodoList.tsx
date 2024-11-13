@@ -79,6 +79,7 @@ const TodoList: React.FC<TodoListProps> = ({
           Clear Completed
         </button>
       </div>
+      <p className="dragHint">Drag and drop to reorder list</p>
     </div>
   );
 };
