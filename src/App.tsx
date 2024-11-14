@@ -69,27 +69,12 @@ function App() {
     setTodos((prevTodos) => prevTodos.filter((todo) => !todo.completed));
   };
 
-  const updateFilteredTodos = (status: "All" | "Active" | "Completed") => {
-    switch (status) {
-      case "Active":
-        setFilteredTodos(todos.filter((todo) => !todo.completed));
-        break;
-      case "Completed":
-        setFilteredTodos(todos.filter((todo) => todo.completed));
-        break;
-      default:
-        setFilteredTodos(todos);
-        break;
-    }
-  };
-
   const deleteTodo = (id: number) => {
     setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
   };
 
   const handleFilterChange = (status: "All" | "Active" | "Completed") => {
     setActiveFilter(status);
-    updateFilteredTodos(status);
   };
 
   return (

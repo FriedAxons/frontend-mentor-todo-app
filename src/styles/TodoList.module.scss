@@ -1,12 +1,12 @@
 .todoList {
   position: relative;
   border-radius: 5px;
-  padding: 0 0 0;
   margin-top: 15px;
-
+  
   /* Dark mode */
   &.dark {
     background-color: $v-dark-desat-blue;
+    box-shadow: 0 20px 30px 24px rgba(0, 0, 0, 0.2);
 
     .todoItem {
       border-bottom: 1px solid $dt-v-dark-gray-blue-two;
@@ -59,43 +59,17 @@
           font-weight: 600;
         }
       }
-
-      // &:active {
-      //   color: $primary-blue;
-      //   opacity: 1;
-      // }
-
-      // &:focus {
-      //   color: $primary-blue;
-      //   opacity: 1;
-      // }
-
-      // .clearCompleted {
-      //   background: none;
-      //   border: none;
-      //   color: inherit;
-      //   padding-right: 30px;
-      //   cursor: pointer;
-
-      //   &:hover {
-      //     color: $dt-l-gray-blue-hover;
-      //     opacity: 1;
-      //   }
-
-      //   &:active {
-      //     color: $primary-blue;
-      //     opacity: 1;
-      //   }
-      // }
     }
   }
 
   .dragHint {
     position: absolute;
-    top: 115%;
-    left: 50%;
-    bottom: -26%;
+    top: 116%;
+    left: 47%;
+    bottom: -20%;
     transform: translate(-50%, -50%);
+    color: $dt-dark-gray-blue;
+    opacity: 0.7;
   }
 }
 

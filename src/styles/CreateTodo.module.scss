@@ -4,6 +4,8 @@
   align-items: center;
   padding: 15px;
   border-radius: 5px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 12px rgba(0,0,0,.3);
 
   /* Dark mode and light mode styles are nested */
   &.dark {
@@ -14,11 +16,15 @@
       border: none;
       font-family: inherit;
       color: $dt-l-gray-blue;
-      opacity: 1;
+
+      &::placeholder {
+        color: $dt-l-gray-blue;
+        opacity: .4;
+      }
     }
 
     .circle {
-      border: 2px solid $dt-v-dark-gray-blue-two;
+      border: 2px solid $dt-v-dark-gray-blue;
       opacity: 1;
     }
   }
@@ -29,7 +35,7 @@
     input {
       border: none;
       color: $l-gray-blue;
-      opacity: .6;
+      opacity: 0.6;
       font-family: inherit;
       font-weight: 600;
     }
@@ -45,7 +51,6 @@
     font-size: 18px;
     border-radius: 5px;
     outline: none;
-    opacity: .6;
   }
 
   span.circle {
