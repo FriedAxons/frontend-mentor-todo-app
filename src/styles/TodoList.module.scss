@@ -2,7 +2,7 @@
   position: relative;
   border-radius: 5px;
   margin-top: 15px;
-  
+
   /* Dark mode */
   &.dark {
     background-color: $v-dark-desat-blue;
@@ -82,9 +82,21 @@
   transition: transform 0.2s ease-in-out;
 
   &.grabbing {
-    background-color: $v-dark-blue;
     cursor: grabbing;
   }
+
+  &.dragging {
+    cursor: grabbing;
+  }
+
+  &.draggingOverlay {
+     background-color: $v-dark-blue;
+    opacity: 0.85;
+    transform: scale(1.02);
+    // z-index: 1;
+  }
+
+  
 
   .radioButton {
     width: 24px;
@@ -149,11 +161,11 @@
       );
       -webkit-mask: linear-gradient(#fff 0 0) padding-box,
         linear-gradient(#fff 0 0);
-        mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
 
       -webkit-mask-composite: destination-out;
       mask-composite: exclude;
-      
+
       background-origin: border-box;
     }
 

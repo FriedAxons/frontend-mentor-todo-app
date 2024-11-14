@@ -5,6 +5,7 @@ import {
   useSensors,
   PointerSensor,
   DragEndEvent,
+  DragOverlay,
 } from "@dnd-kit/core";
 import {
   SortableContext,
@@ -40,10 +41,10 @@ const TodoList: React.FC<TodoListProps> = ({
   updateTodoOrder,
   darkMode,
 }) => {
+  const [activeId, setActiveId] = useState<string | null>(null); // Track the active drag item
   const [activeFilter, setActiveFilter] = useState<
     "All" | "Active" | "Completed"
   >("All");
-  const [isDragging, setIsDragging] = useState(false); // Track drag state
 
   const itemsLeft = todos.filter((todo) => !todo.completed).length;
 
@@ -56,12 +57,12 @@ const TodoList: React.FC<TodoListProps> = ({
     useSensor(PointerSensor, { activationConstraint: { distance: 10 } })
   );
 
-  const handleDragStart = () => {
-    setIsDragging(true); // Set dragging state to true on drag start
+  const handleDragStart = (event: DragEndEvent) => {
+    setActiveId(event.active.id.toString()); // Set the active drag item ID
   };
 
   const handleDragEnd = (event: DragEndEvent) => {
-    setIsDragging(false); // Reset dragging state to false on drag end
+    setActiveId(null); // Reset active drag item
     const { active, over } = event;
     if (!over) return;
 
@@ -138,6 +139,19 @@ const TodoList: React.FC<TodoListProps> = ({
             ))}
           </ul>
         </SortableContext>
+
+        <DragOverlay>
+          {activeId ? (
+            // Render the item being dragged in the overlay
+            <div className={`${styles.todoItem} ${styles.draggingOverlay}`}>
+              <span className={styles.radioButton}></span>
+              <span className={styles.todoText}>
+                {todos.find((todo) => todo.id.toString() === activeId)?.text}
+              </span>
+              <span className={styles.deleteIcon}></span>
+            </div>
+          ) : null}
+        </DragOverlay>
 
         <div className={styles.footer}>
           <span className={styles.itemsLeft}>{itemsLeft} items left</span>
