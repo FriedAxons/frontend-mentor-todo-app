@@ -43,6 +43,8 @@ const TodoList: React.FC<TodoListProps> = ({
   const [activeFilter, setActiveFilter] = useState<
     "All" | "Active" | "Completed"
   >("All");
+  const [isDragging, setIsDragging] = useState(false); // Track drag state
+
   const itemsLeft = todos.filter((todo) => !todo.completed).length;
 
   const handleFilterClick = (status: "All" | "Active" | "Completed") => {
@@ -54,13 +56,21 @@ const TodoList: React.FC<TodoListProps> = ({
     useSensor(PointerSensor, { activationConstraint: { distance: 10 } })
   );
 
-  // Handle drag end event
+  const handleDragStart = () => {
+    setIsDragging(true); // Set dragging state to true on drag start
+  };
+
   const handleDragEnd = (event: DragEndEvent) => {
+    setIsDragging(false); // Reset dragging state to false on drag end
     const { active, over } = event;
     if (!over) return;
 
-    const activeIndex = todos.findIndex((todo) => todo.id === active.id);
-    const overIndex = todos.findIndex((todo) => todo.id === over.id);
+    const activeIndex = todos.findIndex(
+      (todo) => todo.id.toString() === active.id.toString()
+    );
+    const overIndex = todos.findIndex(
+      (todo) => todo.id.toString() === over.id.toString()
+    );
 
     if (activeIndex !== overIndex) {
       const updatedTodos = arrayMove(todos, activeIndex, overIndex);
@@ -68,16 +78,19 @@ const TodoList: React.FC<TodoListProps> = ({
     }
   };
 
-  // Sortable list items, wrapping each `todo` in a `SortableItem` component
   const SortableItem: React.FC<{ todo: Todo }> = ({ todo }) => {
-    const { attributes, listeners, setNodeRef } = useSortable({ id: todo.id });
+    const { attributes, listeners, setNodeRef, isDragging } = useSortable({
+      id: todo.id.toString(),
+    });
 
     return (
       <li
-        ref={setNodeRef} // Attach the ref to the list item
-        {...attributes} // Spread the attributes for accessibility
-        {...listeners} // Spread the listeners for drag events
-        className={styles.todoItem}
+        ref={setNodeRef}
+        {...attributes}
+        {...listeners}
+        className={`${styles.todoItem} ${
+          isDragging ? `${styles.grabbing} ${styles.dragging}` : ""
+        }`}
       >
         <span
           className={`${styles.radioButton} ${
@@ -105,14 +118,18 @@ const TodoList: React.FC<TodoListProps> = ({
   };
 
   return (
-    <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
+    <DndContext
+      sensors={sensors}
+      onDragStart={handleDragStart}
+      onDragEnd={handleDragEnd}
+    >
       <div
         className={`${styles.todoList} ${
           darkMode ? styles.dark : styles.light
         }`}
       >
         <SortableContext
-          items={todos.map((todo) => todo.id)}
+          items={todos.map((todo) => todo.id.toString())}
           strategy={verticalListSortingStrategy}
         >
           <ul>
