@@ -18,6 +18,10 @@ function App() {
     }
   });
 
+  const updateTodoOrder = (updatedTodos: Todo[]) => {
+    setTodos(updatedTodos);
+  };
+
   const [activeFilter, setActiveFilter] = useState<
     "All" | "Active" | "Completed"
   >("All");
@@ -88,6 +92,7 @@ function App() {
           clearCompleted={clearCompleted}
           filterTodos={handleFilterChange} // Change the filter through this handler
           deleteTodo={deleteTodo}
+          updateTodoOrder={updateTodoOrder}
           darkMode={theme === "dark"}
         />
       )}
