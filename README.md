@@ -24,15 +24,16 @@ Any tools you like to help you complete the challenge may be used. So if you've 
 Users should be able to:
 
 - View the optimal layout for the app depending on their device's screen size
-- See hover states for all interactive elements on the page
-- Add new todos to the list
-- Mark todos as complete
-- Delete todos from the list
-- Filter by all/active/complete todos
-- Clear all completed todos
-- Toggle light and dark mode
-- **Bonus**: Drag and drop to reorder items on the list
-- **Made up bonus**: This is not from the project itself, but for the extra challenge try adding something like local storage so the data persists for the user
+~~- See hover states for all interactive elements on the page~~
+~~- Add new todos to the list~~
+~~- Mark todos as complete~~
+~~- Delete todos from the list~~
+~~- Filter by all/active/complete todos~~
+~~- Clear all completed todos~~
+~~- Toggle light and dark mode~~
+~~- **Bonus**: Drag and drop to reorder items on the list~~
+  - Style drag and drop feature visually
+~~- **Made up bonus**: This is not from the project itself, but for the extra challenge try adding something like local storage so the data persists for the user~~
 
 ### Screenshot
 
