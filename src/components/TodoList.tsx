@@ -80,18 +80,26 @@ const TodoList: React.FC<TodoListProps> = ({
   };
 
   const SortableItem: React.FC<{ todo: Todo }> = ({ todo }) => {
-    const { attributes, listeners, setNodeRef, isDragging } = useSortable({
-      id: todo.id.toString(),
-    });
+    const { attributes, listeners, setNodeRef, transform, transition } =
+      useSortable({
+        id: todo.id.toString(),
+      });
+
+    // Apply transform and transition styles to animate movement
+    const style = {
+      transform: transform
+        ? `translate3d(${transform.x}px, ${transform.y}px, 0)`
+        : undefined,
+      transition: transition ?? undefined,
+    };
 
     return (
       <li
         ref={setNodeRef}
         {...attributes}
         {...listeners}
-        className={`${styles.todoItem} ${
-          isDragging ? `${styles.grabbing} ${styles.dragging}` : ""
-        }`}
+        className={`${styles.todoItem}`}
+        style={style} // Apply animated style here
       >
         <span
           className={`${styles.radioButton} ${

@@ -79,24 +79,14 @@
   align-items: center;
   padding: 15.91px 0;
   cursor: grab;
-  transition: transform 0.2s ease-in-out;
-
-  &.grabbing {
-    cursor: grabbing;
-  }
-
-  &.dragging {
-    cursor: grabbing;
-  }
+  transition: transform 150ms ease;
+  will-change: transform;
 
   &.draggingOverlay {
-     background-color: $v-dark-blue;
-    opacity: 0.85;
+    cursor: grabbing;
+    background-color: $v-dark-blue;
     transform: scale(1.02);
-    // z-index: 1;
   }
-
-  
 
   .radioButton {
     width: 24px;
