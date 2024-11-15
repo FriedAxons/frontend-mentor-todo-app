@@ -6,6 +6,7 @@ import {
   PointerSensor,
   DragEndEvent,
   DragOverlay,
+  closestCenter,
 } from "@dnd-kit/core";
 import {
   SortableContext,
@@ -62,9 +63,11 @@ const TodoList: React.FC<TodoListProps> = ({
   };
 
   const handleDragEnd = (event: DragEndEvent) => {
-    setActiveId(null); // Reset active drag item
     const { active, over } = event;
-    if (!over) return;
+    if (!over || active.id === over.id) {
+      setActiveId(null); // Reset active drag item
+      return;
+    }
 
     const activeIndex = todos.findIndex(
       (todo) => todo.id.toString() === active.id.toString()
@@ -74,9 +77,10 @@ const TodoList: React.FC<TodoListProps> = ({
     );
 
     if (activeIndex !== overIndex) {
-      const updatedTodos = arrayMove(todos, activeIndex, overIndex);
-      updateTodoOrder(updatedTodos);
+      const reorderedTodos = arrayMove(todos, activeIndex, overIndex);
+      updateTodoOrder(reorderedTodos);
     }
+    setActiveId(null);
   };
 
   const SortableItem: React.FC<{ todo: Todo }> = ({ todo }) => {
@@ -90,7 +94,7 @@ const TodoList: React.FC<TodoListProps> = ({
       transform: transform
         ? `translate3d(${transform.x}px, ${transform.y}px, 0)`
         : undefined,
-      transition: transition ?? undefined,
+      transition: transition || "transform 200ms ease",
     };
 
     return (
@@ -129,6 +133,7 @@ const TodoList: React.FC<TodoListProps> = ({
   return (
     <DndContext
       sensors={sensors}
+      collisionDetection={closestCenter}
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
     >
