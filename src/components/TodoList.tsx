@@ -64,23 +64,32 @@ const TodoList: React.FC<TodoListProps> = ({
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
+
+    console.log("Active ID:", active.id);
+    console.log("Over ID:", over?.id);
+
+    // If no valid drop target or same position, do nothing
     if (!over || active.id === over.id) {
-      setActiveId(null); // Reset active drag item
+      setActiveId(null);
+      console.log("No reordering needed.");
       return;
     }
 
     const activeIndex = todos.findIndex(
-      (todo) => todo.id.toString() === active.id.toString()
+      (todo) => todo.id.toString() === active.id
     );
-    const overIndex = todos.findIndex(
-      (todo) => todo.id.toString() === over.id.toString()
-    );
+    const overIndex = todos.findIndex((todo) => todo.id.toString() === over.id);
 
-    if (activeIndex !== overIndex) {
+    console.log("Active Index:", activeIndex, "Over Index:", overIndex);
+
+    // Validate indices before performing the move
+    if (activeIndex !== -1 && overIndex !== -1) {
       const reorderedTodos = arrayMove(todos, activeIndex, overIndex);
-      updateTodoOrder(reorderedTodos);
+      console.log("Reordered Todos:", reorderedTodos);
+      updateTodoOrder(reorderedTodos); // Ensure `todos` state updates correctly
     }
-    setActiveId(null);
+
+    setActiveId(null); // Reset drag state
   };
 
   const SortableItem: React.FC<{ todo: Todo }> = ({ todo }) => {
