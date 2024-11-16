@@ -8,6 +8,10 @@
     background-color: $v-dark-desat-blue;
     box-shadow: 0 20px 30px 24px rgba(0, 0, 0, 0.2);
 
+    .radioButton {
+      border: 2px solid $dt-v-dark-gray-blue-two;
+    }
+
     .todoItem {
       border-bottom: 1px solid $dt-v-dark-gray-blue-two;
     }
@@ -33,12 +37,11 @@
     }
 
     .radioButton {
-      border: none;
+      border: 2px solid $v-light-gray-blue;
     }
 
     .todoText {
       color: $v-dark-gray-blue;
-      font-weight: 600;
     }
 
     .footer {
@@ -97,7 +100,6 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    border: 2px solid $dt-v-dark-gray-blue-two;
     margin: 0 10px 2px 30px;
     position: relative;
 
@@ -176,7 +178,7 @@
   .todoText {
     padding: 10px 0 10px 15px;
     color: $dt-l-gray-blue;
-    font-size: 18px;
+    font-size: 19px;
     cursor: pointer;
 
     &.completed {
