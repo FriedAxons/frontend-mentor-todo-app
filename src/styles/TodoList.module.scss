@@ -102,11 +102,8 @@
   padding: 15.91px 0;
   transition: transform 200ms ease;
   will-change: transform;
-
-  &:hover {
-    cursor: grab;
-  }
-
+  cursor: grab;
+  
   &.dragging {
     cursor: grabbing;
     background-color: $v-dark-blue;

@@ -91,10 +91,10 @@ const TodoList: React.FC<TodoListProps> = ({
       transform: transform
         ? `translate3d(${transform.x}px, ${transform.y}px, 0)`
         : undefined,
-      transition: isDragging ? "none" : transition || "transform 200ms ease", // Disable transition during drag
-      zIndex: isDragging ? 1000 : "auto", // Keep dragged item on top
-      visibility: isDragging ? "visible" : undefined, // Keep item visible while dragging
-      cursor: isDragging ? "grabbing" : "grab", // Force grabbing cursor when dragging
+      transition: isDragging ? "none" : transition || "transform 200ms ease",
+      zIndex: isDragging ? 1000 : "auto",
+      visibility: isDragging ? "visible" : undefined,
+      cursor: isDragging ? "grabbing" : "grab", // Ensure grabbing cursor is applied during drag
     };
 
     return (
@@ -102,7 +102,7 @@ const TodoList: React.FC<TodoListProps> = ({
         ref={setNodeRef}
         {...attributes}
         {...listeners}
-        className={`${styles.todoItem} ${isDragging ? styles.dragging : ""}`} // Apply dragging class dynamically
+        className={`${styles.todoItem} ${isDragging ? styles.dragging : ""}`}
         style={style}
       >
         <span
