@@ -5,7 +5,6 @@ import {
   useSensors,
   PointerSensor,
   DragEndEvent,
-  DragOverlay,
   closestCenter,
 } from "@dnd-kit/core";
 import {
@@ -14,7 +13,7 @@ import {
   useSortable,
   arrayMove,
 } from "@dnd-kit/sortable";
-
+import { restrictToParentElement } from "@dnd-kit/modifiers";
 import styles from "../styles/TodoList.module.scss";
 
 export interface Todo {
@@ -65,31 +64,19 @@ const TodoList: React.FC<TodoListProps> = ({
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
 
-    console.log("Active ID:", active.id);
-    console.log("Over ID:", over?.id);
-
-    // If no valid drop target or same position, do nothing
+    setActiveId(null); // Reset the active ID when the drag ends
     if (!over || active.id === over.id) {
-      setActiveId(null);
-      console.log("No reordering needed.");
-      return;
+      return; // Do nothing if dropped on itself
     }
 
-    const activeIndex = todos.findIndex(
+    const oldIndex = todos.findIndex(
       (todo) => todo.id.toString() === active.id
     );
-    const overIndex = todos.findIndex((todo) => todo.id.toString() === over.id);
+    const newIndex = todos.findIndex((todo) => todo.id.toString() === over.id);
 
-    console.log("Active Index:", activeIndex, "Over Index:", overIndex);
-
-    // Validate indices before performing the move
-    if (activeIndex !== -1 && overIndex !== -1) {
-      const reorderedTodos = arrayMove(todos, activeIndex, overIndex);
-      console.log("Reordered Todos:", reorderedTodos);
-      updateTodoOrder(reorderedTodos); // Ensure `todos` state updates correctly
-    }
-
-    setActiveId(null); // Reset drag state
+    // Reorder todos
+    const reorderedTodos = arrayMove(todos, oldIndex, newIndex);
+    updateTodoOrder(reorderedTodos); // Update the list after drag ends
   };
 
   const SortableItem: React.FC<{ todo: Todo }> = ({ todo }) => {
@@ -98,12 +85,16 @@ const TodoList: React.FC<TodoListProps> = ({
         id: todo.id.toString(),
       });
 
-    // Apply transform and transition styles to animate movement
-    const style = {
+    const isDragging = activeId === todo.id.toString(); // Check if this item is being dragged
+
+    const style: React.CSSProperties = {
       transform: transform
         ? `translate3d(${transform.x}px, ${transform.y}px, 0)`
         : undefined,
-      transition: transition || "transform 200ms ease",
+      transition: isDragging ? "none" : transition || "transform 200ms ease", // Disable transition during drag
+      zIndex: isDragging ? 1000 : "auto", // Keep dragged item on top
+      visibility: isDragging ? "visible" : undefined, // Keep item visible while dragging
+      cursor: isDragging ? "grabbing" : "grab", // Force grabbing cursor when dragging
     };
 
     return (
@@ -111,8 +102,8 @@ const TodoList: React.FC<TodoListProps> = ({
         ref={setNodeRef}
         {...attributes}
         {...listeners}
-        className={`${styles.todoItem}`}
-        style={style} // Apply animated style here
+        className={`${styles.todoItem} ${isDragging ? styles.dragging : ""}`} // Apply dragging class dynamically
+        style={style}
       >
         <span
           className={`${styles.radioButton} ${
@@ -142,6 +133,7 @@ const TodoList: React.FC<TodoListProps> = ({
   return (
     <DndContext
       sensors={sensors}
+      modifiers={[restrictToParentElement]}
       collisionDetection={closestCenter}
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
@@ -161,19 +153,6 @@ const TodoList: React.FC<TodoListProps> = ({
             ))}
           </ul>
         </SortableContext>
-
-        <DragOverlay>
-          {activeId ? (
-            // Render the item being dragged in the overlay
-            <div className={`${styles.todoItem} ${styles.draggingOverlay}`}>
-              <span className={styles.radioButton}></span>
-              <span className={styles.todoText}>
-                {todos.find((todo) => todo.id.toString() === activeId)?.text}
-              </span>
-              <span className={styles.deleteIcon}></span>
-            </div>
-          ) : null}
-        </DragOverlay>
 
         <div className={styles.footer}>
           <span className={styles.itemsLeft}>{itemsLeft} items left</span>
