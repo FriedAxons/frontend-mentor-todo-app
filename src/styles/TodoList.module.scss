@@ -283,10 +283,31 @@
 
 @media (max-width: 375px) {
   .todoList {
-    margin-top: 0; 
+    margin-top: 0;
+
+    &.dark {
+      .footer {
+        position: relative;
+        padding: 10px 0;
+  
+        .filters {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: absolute;
+          background-color: $v-dark-desat-blue;
+          width: 100%;
+          top: 100px;
+          padding: 0;
+          height: 56px;
+          border-radius: 5px;
+        }
+      }
+    }
 
     .todoItem {
       padding: 10px 0;
+
 
       .radioButton {
         margin-left: 20px;
