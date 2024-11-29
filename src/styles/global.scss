@@ -38,3 +38,18 @@ body {
   height: 80%;
   font-family: $font;
 }
+
+@media (max-width: 375px) {
+
+  .App {
+    width: 100%;
+  }
+
+  body.dark {
+    background-image: $bg-mobile-dark;
+  }
+
+  body.light {
+    background-image: $bg-desktop-light;
+  }
+}
