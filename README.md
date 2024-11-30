@@ -42,12 +42,19 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
+The same applies to the following screenshots with the light version.
+
+![Desktop completed](assets/screenshots/desktop_1.png)
+![Desktop completed with todo](assets/screenshots/desktop_2.png)
+![Active desktop with completed todo](assets/screenshots/desktop_active.png)
+![Mobile completed](assets/screenshots/mobile_1.png)
+![Mobile completed with todo](assets/screenshots/mobile_2.png)
+![Active mobile with completed todo](assets/screenshots/mobile_active.png)
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [Add solution URL here](https://www.frontendmentor.io/solutions/frontend-mentor-todo-app-BWab7VEHZX)
+- Live Site URL: [Add live site URL here](https://friedaxons.github.io/frontend-mentor-todo-app/)
 
 ### Built with
 
@@ -58,5 +65,5 @@ Users should be able to:
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
+- Website - [FriedAxons](https://github.com/FriedAxons)
+- Frontend Mentor - [@FriedAxons](https://www.frontendmentor.io/profile/FriedAxons)
