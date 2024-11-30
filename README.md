@@ -31,9 +31,14 @@ Users should be able to:
 - Filter by all/active/complete todos
 - Clear all completed todos
 - Toggle light and dark mode
-  ~~- **Bonus**: Drag and drop to reorder items on the list~~
-  ~~- Style drag and drop feature visually~~
-  ~~- **Made up bonus**: This is not from the project itself, but for the extra challenge try adding something like local storage so the data persists for the user~~
+
+**Bonus**:
+
+1. ~~Drag and drop to reorder items on the list~~
+
+2. ~~- Style drag and drop feature visually~~
+
+**Made up bonus**: ~~This is not from the project itself, but for the extra challenge try adding something like local storage so the data persists for the user~~
 
 ### Screenshot
 
