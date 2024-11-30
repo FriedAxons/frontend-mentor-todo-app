@@ -86,12 +86,13 @@
 
   .dragHint {
     position: absolute;
-    top: 116%;
-    left: 46%;
+    top: 118%;
+    left: 47%;
     bottom: -20%;
     transform: translate(-50%, -50%);
     color: $dt-dark-gray-blue;
     opacity: 0.7;
+    padding-bottom: 50px;
   }
 }
 
@@ -288,14 +289,16 @@
     &.dark {
       .filters {
         background-color: $v-dark-desat-blue;
+        box-shadow: 0 20px 30px 24px rgba(0, 0, 0, 0.2);
       }
     }
-    
-    // &.light {
-    //   .filters {
 
-    //   }
-    // }
+    &.light {
+      .filters {
+        background-color: $v-light-gray;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, .1);
+      }
+    }
 
     .todoItem {
       padding: 10px 0;
@@ -321,26 +324,26 @@
 
     .filters {
       display: flex;
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        width: 100%;
-        top: calc(100% + 18px); /* Positioned below the todo list */
-        padding: 0;
-        height: 56px;
-        border-radius: 5px;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      width: 100%;
+      top: calc(100% + 18px); /* Positioned below the todo list */
+      padding: 0;
+      height: 56px;
+      border-radius: 5px;
 
-        button {
-          font-size: 15px;
-        }
+      button {
+        font-size: 15px;
+      }
     }
 
     .dragHint {
       position: absolute;
       width: 100%;
-      left: 50%; 
+      left: 50%;
       transform: translateX(-50%);
-      top: calc(100% + 120px);
+      top: calc(100% + 130px);
       text-align: center;
       font-size: 15px;
       font-weight: 600;
