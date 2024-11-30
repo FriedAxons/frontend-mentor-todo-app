@@ -86,7 +86,7 @@
 
   .dragHint {
     position: absolute;
-    top: 118%;
+    top: calc(100% + 100px);
     left: 47%;
     bottom: -20%;
     transform: translate(-50%, -50%);
@@ -296,7 +296,7 @@
     &.light {
       .filters {
         background-color: $v-light-gray;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, .1);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
       }
     }
 
