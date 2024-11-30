@@ -283,36 +283,22 @@
 
 @media (max-width: 375px) {
   .todoList {
-    position: relative;
     margin-top: 0;
 
     &.dark {
-      .footer {
-        position: relative;
-        padding: 10px 0;
-  
-        .filters {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          position: absolute;
-          background-color: $v-dark-desat-blue;
-          width: 100%;
-          top: 72px;
-          padding: 0;
-          height: 56px;
-          border-radius: 5px;
-
-          button {
-            font-size: 14px;
-          }
-        }
+      .filters {
+        background-color: $v-dark-desat-blue;
       }
     }
+    
+    // &.light {
+    //   .filters {
+
+    //   }
+    // }
 
     .todoItem {
       padding: 10px 0;
-
 
       .radioButton {
         margin-left: 20px;
@@ -329,14 +315,37 @@
       }
     }
 
+    .footer {
+      padding: 10px 0;
+    }
+
+    .filters {
+      display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        width: 100%;
+        top: calc(100% + 18px); /* Positioned below the todo list */
+        padding: 0;
+        height: 56px;
+        border-radius: 5px;
+
+        button {
+          font-size: 15px;
+        }
+    }
+
     .dragHint {
       position: absolute;
       width: 100%;
-      left: 50%;
+      left: 50%; 
+      transform: translateX(-50%);
+      top: calc(100% + 120px);
       text-align: center;
       font-size: 15px;
       font-weight: 600;
-      opacity: .6;
+      opacity: 0.6;
+      padding-bottom: 30px;
     }
   }
 }
