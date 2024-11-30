@@ -4,6 +4,7 @@ import {
   useSensor,
   useSensors,
   PointerSensor,
+  // TouchSensor,
   DragEndEvent,
   closestCenter,
 } from "@dnd-kit/core";
@@ -55,6 +56,9 @@ const TodoList: React.FC<TodoListProps> = ({
 
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 10 } })
+    // useSensor(TouchSensor, {
+    //   activationConstraint: { delay: 150, tolerance: 5 },
+    // })
   );
 
   const handleDragStart = (event: DragEndEvent) => {
