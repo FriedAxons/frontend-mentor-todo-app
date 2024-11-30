@@ -53,8 +53,8 @@ The same applies to the following screenshots with the light version.
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://www.frontendmentor.io/solutions/frontend-mentor-todo-app-BWab7VEHZX)
-- Live Site URL: [Add live site URL here](https://friedaxons.github.io/frontend-mentor-todo-app/)
+- Solution URL: [Frontend Mentor Solution](https://www.frontendmentor.io/solutions/frontend-mentor-todo-app-BWab7VEHZX)
+- Live Site URL: [GitHub Page](https://friedaxons.github.io/frontend-mentor-todo-app/)
 
 ### Built with
 
